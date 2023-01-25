@@ -12,8 +12,6 @@ import javax.inject.Inject
 @HiltViewModel
 class LauncherViewModel @Inject constructor() : ViewModel() {
 
-    var isLoading: Boolean = true
-
     private val _showDeviceNotSecure = MutableLiveData<Unit>()
     val showDeviceNotSecure: LiveData<Unit> = _showDeviceNotSecure
 
@@ -23,7 +21,6 @@ class LauncherViewModel @Inject constructor() : ViewModel() {
     fun appCheck() {
         viewModelScope.launch {
             delay(2000L)
-            isLoading = false
         }
     }
 }

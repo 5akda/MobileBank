@@ -17,7 +17,7 @@ class LauncherActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen().also {
-            it.setKeepOnScreenCondition { viewModel.isLoading }
+            it.setKeepOnScreenCondition { true }
         }
         super.onCreate(savedInstanceState)
         binding = ActivityLauncherBinding.inflate(layoutInflater)
