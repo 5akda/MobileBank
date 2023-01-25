@@ -1,0 +1,6 @@
+com.google.android
+com.google.firebase
+com.krungsri.uchoose
+com.example.test
+com.kitkagames.fallbuddies
+com.wultra.app.screenlogger
