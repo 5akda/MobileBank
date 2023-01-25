@@ -1,4 +1,4 @@
-package iam5akda.mobilebank.view.file
+package iam5akda.mobilebank.file
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
