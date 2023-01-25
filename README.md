@@ -1,10 +1,12 @@
 # Accessibility Service Detection POC
 
-## MobileBank (Target)
+## MobileBank (as Target)
 This Example App
 
-## Screen Logger (Malware)
-Package Name: com.wultra.app.screenlogger
+
+## Screen Logger (as Malware)
+Package Name: `com.wultra.app.screenlogger`
+
 
 ## More Information
 Ignore accessibility service for some layout
