@@ -1,8 +1,8 @@
-package iam5akda.mobilebank.view.accessibility
+package iam5akda.mobilebank.accessibility
 
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.view.accessibility.AccessibilityManager
-import iam5akda.mobilebank.view.file.FileReader
+import iam5akda.mobilebank.file.FileReader
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject

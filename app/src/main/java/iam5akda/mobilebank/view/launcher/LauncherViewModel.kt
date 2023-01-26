@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import iam5akda.mobilebank.view.accessibility.AccessibilityServiceDetector
+import iam5akda.mobilebank.accessibility.AccessibilityServiceDetector
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -26,7 +26,8 @@ class LauncherViewModel @Inject constructor(
     val navigateToLogin: LiveData<Unit> = _navigateToLogin
 
     fun appCheck() {
-        printServiceList()
+        //printServiceList()
+        checkDeviceSecurity()
     }
 
     private fun printServiceList() {

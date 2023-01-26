@@ -1,4 +1,4 @@
-package iam5akda.mobilebank.view.accessibility
+package iam5akda.mobilebank.accessibility
 
 import android.accessibilityservice.AccessibilityServiceInfo
 import kotlinx.coroutines.flow.Flow
