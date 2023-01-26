@@ -6,15 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import iam5akda.mobilebank.accessibility.AccessibilityServiceDetector
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import iam5akda.mobilebank.domain.CheckDeviceSecureUseCase
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LauncherViewModel @Inject constructor(
-    private val accessibilityServiceDetector: AccessibilityServiceDetector
+    private val checkDeviceSecureUseCase: CheckDeviceSecureUseCase
 ) : ViewModel() {
 
     var isLoading: Boolean = true
@@ -26,36 +25,21 @@ class LauncherViewModel @Inject constructor(
     val navigateToLogin: LiveData<Unit> = _navigateToLogin
 
     fun appCheck() {
-        //printServiceList()
-        checkDeviceSecurity()
-    }
-
-    private fun printServiceList() {
         viewModelScope.launch {
-            accessibilityServiceDetector.getEnabledServiceList()
-                .flowOn(Dispatchers.IO)
-                .collect {
-                    it.forEach { service ->
-                        Log.d("AccessibilityService", service.id)
-                    }
-                    _navigateToLogin.postValue(Unit)
+            checkDeviceSecureUseCase.invoke()
+                .onCompletion { isLoading = false }
+                .collect { result ->
+                    result.onSuccess { processCheckDeviceSecure(it) }
+                        .onFailure { Log.d("LauncherViewModel", "AppCheck Error Jaaa") }
                 }
         }
     }
 
-    private fun checkDeviceSecurity() {
-        viewModelScope.launch {
-            accessibilityServiceDetector.isDeviceSecure()
-                .flowOn(Dispatchers.IO)
-                .onCompletion {
-                    isLoading = false
-                }
-                .collect { isSecure ->
-                    when (isSecure) {
-                        true -> _navigateToLogin.postValue(Unit)
-                        false -> _showDeviceNotSecure.postValue(Unit)
-                    }
-                }
+    private fun processCheckDeviceSecure(isSecure: Boolean) {
+        if (isSecure) {
+            _navigateToLogin.postValue(Unit)
+        } else {
+            _showDeviceNotSecure.postValue(Unit)
         }
     }
 }
