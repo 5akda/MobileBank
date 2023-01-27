@@ -1,12 +1,10 @@
-package iam5akda.mobilebank.di
+package iam5akda.mobilebank.file
 
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import iam5akda.mobilebank.file.FileReader
-import iam5akda.mobilebank.file.FileReaderImpl
 
 @Module
 @InstallIn(SingletonComponent::class)

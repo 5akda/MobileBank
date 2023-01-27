@@ -5,5 +5,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface AccessibilityServiceDetector {
     fun getEnabledServiceList(): Flow<List<AccessibilityServiceInfo>>
-    fun isDeviceSecure(): Flow<Boolean>
 }
